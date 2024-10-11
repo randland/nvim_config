@@ -1,15 +1,21 @@
 return {
-	{
-		"christoomey/vim-tmux-runner",
-		"christoomey/vim-sort-motion",
-		"junegunn/vim-easy-align",
-		"tpope/vim-surround",
-		"tpope/vim-fugitive",
-	},
-	{
-		"kana/vim-textobj-entire",
-		dependencies = {
-			"kana/vim-textobj-user",
-		},
-	},
+  {
+    "christoomey/vim-sort-motion",
+    "christoomey/vim-tmux-runner",
+    "jgdavey/vim-blockle",
+    "junegunn/vim-easy-align",
+    "slim-template/vim-slim",
+    "tpope/vim-endwise",
+    "tpope/vim-fugitive",
+    "tpope/vim-rhubarb",
+    "tpope/vim-rails",
+    "tpope/vim-repeat",
+    "tpope/vim-surround",
+  },
+  {
+    "kana/vim-textobj-entire",
+    dependencies = {
+      "kana/vim-textobj-user",
+    },
+  },
 }

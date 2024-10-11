@@ -3,14 +3,29 @@ return {
   config = function()
     local null_ls = require("null-ls")
     -- local group = vim.api.nvim_create_augroup("lsp_format_on_save", { clear = false })
-    -- local event = "BufWritePre" -- or "BufWritePost"
-    -- local async = event == "BufWritePost"
+    -- local event = 'BufWritePre' -- or "BufWritePost"
+    -- local async = event == 'BufWritePost'
 
     null_ls.setup({
       sources = {
-        null_ls.builtins.formatting.rubocop,
-        null_ls.builtins.diagnostics.rubocop,
+        -- null_ls.builtins.formatting.rubocop,
+        -- null_ls.builtins.diagnostics.rubocop,
         null_ls.builtins.formatting.prettier,
+        --.with({
+        --  filetypes = {
+        --    "javascript",
+        --    "typescript",
+        --    "css",
+        --    "scss",
+        --    "html",
+        --    "json",
+        --    "yaml",
+        --    "markdown",
+        --    "graphql",
+        --    "md",
+        --    "txt",
+        --  }
+        --}),
         null_ls.builtins.diagnostics.eslint,
         null_ls.builtins.formatting.stylua,
       },
@@ -40,7 +55,7 @@ return {
       end,
     })
 
-    vim.keymap.set("n", "<leader>z", function()
+    vim.keymap.set("n", "<leader>gf", function()
       vim.lsp.buf.format()
       vim.cmd("retab")
     end, {})

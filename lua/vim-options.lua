@@ -1,3 +1,4 @@
+vim.cmd("set nowrap")
 vim.cmd("set expandtab")
 vim.cmd("set tabstop=2")
 vim.cmd("set softtabstop=2")
@@ -25,6 +26,9 @@ vim.keymap.set({ "n", "v" }, "<leader>P", '"+P', { noremap = true })
 vim.keymap.set({ "n", "v" }, "<leader>y", '"+y', { noremap = true })
 vim.keymap.set({ "n", "v" }, "<leader>Y", '"+Y', { noremap = false })
 vim.keymap.set("n", "Y", 'y$', { noremap = true })
+
+vim.keymap.set("n", "]q", ':cn<cr>', { noremap = true })
+vim.keymap.set("n", "[q", ':cp<cr>', { noremap = true })
 
 vim.keymap.set("n", "<leader>-", ":split<cr><c-w>j", { noremap = true })
 vim.keymap.set("n", "<leader>_", ":split<cr><c-w>j", { noremap = true })
