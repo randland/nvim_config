@@ -59,4 +59,27 @@ vim.keymap.set("n", "<leader>r!", ":w<cr>:VtrSendCommandToRunner !!!<cr>", { nor
 
 vim.keymap.set("n", "<leader>=", "=ae", { noremap = false })
 
+vim.diagnostic.config({
+  virtual_text = {
+    prefix = '●', -- Customize prefix, e.g., '●', '■', '▶'
+    spacing = 4,
+  },
+  signs = true,
+  underline = true,
+  update_in_insert = false,  -- Show diagnostics only in normal mode
+  severity_sort = true,
+})
 
+local signs = { Error = "✘ ", Warn = "▲ ", Hint = "⚑ ", Info = "ℹ " }
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+end
+
+-- Show diagnostics in a floating window for the current line
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = "Show line diagnostics" })
+
+-- Go to the next diagnostic (error, warning, etc.)
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic" })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = "Go to next diagnostic" })
+vim.opt.signcolumn = "yes:1"  -- Keeps sign column always open with a width of 1 character

@@ -30,7 +30,7 @@ return {
         },
       },
       filesystem = {
-        follow_current_file = true,  -- Keeps Neo-tree in sync with the current file
+        follow_current_file = { enabled = true },  -- Keeps Neo-tree in sync with the current file
         hijack_netrw_behavior = 'open_current',  -- Adjusted for v3 behavior
         use_libuv_file_watcher = true,  -- Automatically watches files for updates
         filtered_items = {
@@ -40,9 +40,11 @@ return {
         },
       },
       buffers = {
+        follow_current_file = { enabled = true },  -- Keeps Neo-tree in sync with the current file
         show_unloaded = true,
       },
       git_status = {
+        follow_current_file = { enabled = true },  -- Keeps Neo-tree in sync with the current file
         window = {
           position = 'float',
         },
