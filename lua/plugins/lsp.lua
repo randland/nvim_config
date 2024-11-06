@@ -8,8 +8,20 @@ return {
 
       -- Setup Volar for Vue
       lspconfig.volar.setup {
-        filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json' },
-        capabilities = capabilities,
+        filetypes = { 'javascript', 'javascriptreact', 'vue', 'json' },  -- Limit to JavaScript-related files only
+        on_new_config = function(new_config, new_root_dir)
+          new_config.init_options = {
+            typescript = { tsdk = '' },  -- Override TypeScript SDK path to prevent loading TypeScript
+          }
+          new_config.settings = {
+            volar = {
+              languageFeatures = {
+                diagnostics = { typescript = false },  -- Disable TypeScript diagnostics
+              },
+              disableTsPlugin = true,  -- Disable TypeScript features
+            },
+          }
+        end,
       }
 
       -- Setup Solargraph for Ruby
@@ -21,6 +33,10 @@ return {
             completion = true,
           },
         },
+      }
+
+      lspconfig.ts_ls.setup {
+        filetypes = { 'javascript', 'javascriptreact', 'json' },  -- Only JavaScript and JSON
       }
 
       -- Setup for Lua Language Server
@@ -38,9 +54,9 @@ return {
           },
         },
       }
+
       -- Configure other LSP servers if needed
       lspconfig.pyright.setup {}         -- Python
-      lspconfig.ts_ls.setup {}           -- JavaScript/TypeScript
     end,
   },
 
