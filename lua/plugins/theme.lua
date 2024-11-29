@@ -20,12 +20,12 @@ return {
       vim.api.nvim_set_hl(0, 'CursorLineNr', { fg = '#ffffff' })
 
       -- Define highlight group for trailing whitespace
-      vim.api.nvim_set_hl(0, 'ExtraWhitespace', { bg = '#ff0000', fg = 'NONE' })
+      vim.api.nvim_set_hl(0, 'ExtraWhitespace', { bg = 'NONE', fg = '#FF0000' })
 
       -- Autocommand to ensure ExtraWhitespace always has a red background after colorscheme change
       vim.api.nvim_create_autocmd('ColorScheme', {
         callback = function()
-          vim.api.nvim_set_hl(0, 'ExtraWhitespace', { bg = '#ff0000', fg = 'NONE' })
+          vim.api.nvim_set_hl(0, 'ExtraWhitespace', { bg = 'NONE', fg = '#FF0000' })
         end,
       })
 
