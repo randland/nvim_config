@@ -29,10 +29,10 @@ return {
       },
       pickers = {
         find_files = {
-          theme = "dropdown",  -- Display files in a dropdown menu
+          -- theme = "dropdown",  -- Display files in a dropdown menu
         },
         buffers = {
-          theme = "dropdown",
+          -- theme = "dropdown",
           sort_mru = true,  -- Sort buffers by most recently used
         },
         oldfiles = {
