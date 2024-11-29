@@ -3,7 +3,6 @@ return {
   build = ':TSUpdate',  -- Auto-update parsers
   config = function()
     require('nvim-treesitter.configs').setup({
-      ensure_installed = "maintained",  -- Install maintained parsers
       highlight = {
         enable = true,  -- Enable syntax highlighting
       },
@@ -26,6 +25,7 @@ return {
         "html",
         "json",
         "lua",
+        "maintained",
         "markdown",
         "python",
         "ruby",
