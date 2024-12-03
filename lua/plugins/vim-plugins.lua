@@ -5,6 +5,10 @@ return {
   'christoomey/vim-tmux-runner',
   'tpope/vim-surround',
   'tpope/vim-repeat',
-  'kana/vim-textobj-user',
-  'kana/vim-textobj-entire'
+  {
+    'kana/vim-textobj-entire',
+    dependencies = {
+      'kana/vim-textobj-user',
+    }
+  }
 }
