@@ -4,7 +4,7 @@ return {
     'neovim/nvim-lspconfig',
     config = function()
       local lspconfig = require('lspconfig')
-      local capabilities = require('cmp_nvim_lsp').default_capabilities()
+      -- local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
       -- Setup Volar for Vue
       lspconfig.volar.setup {
@@ -26,7 +26,7 @@ return {
 
       -- Setup Solargraph for Ruby
       lspconfig.solargraph.setup {
-        capabilities = capabilities,
+        -- capabilities = capabilities,
         settings = {
           solargraph = {
             diagnostics = true,
@@ -41,7 +41,7 @@ return {
 
       -- Setup for Lua Language Server
       lspconfig.lua_ls.setup {
-        capabilities = capabilities,
+        -- capabilities = capabilities,
         settings = {
           Lua = {
             diagnostics = {
@@ -78,59 +78,59 @@ return {
   },
 
   -- Autocompletion setup
-  {
-    'hrsh7th/nvim-cmp',
-    dependencies = {
-      'hrsh7th/cmp-nvim-lsp',      -- LSP source for nvim-cmp
-      'hrsh7th/cmp-buffer',        -- Buffer completions
-      'hrsh7th/cmp-path',          -- Path completions
-      'hrsh7th/cmp-cmdline',       -- Command line completions
-      'L3MON4D3/LuaSnip',          -- Snippet engine
-      'saadparwaiz1/cmp_luasnip',  -- Snippet completions
-    },
-    config = function()
-      local cmp = require('cmp')
-      local luasnip = require('luasnip')
-
-      cmp.setup({
-        snippet = {
-          expand = function(args)
-            luasnip.lsp_expand(args.body)
-          end,
-        },
-        mapping = cmp.mapping.preset.insert({
-          ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-          ['<C-f>'] = cmp.mapping.scroll_docs(4),
-          ['<C-Space>'] = cmp.mapping.complete(),
-          ['<CR>'] = cmp.mapping.confirm({ select = true }),
-          ['<Tab>'] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_next_item()
-            elseif luasnip.expand_or_jumpable() then
-              luasnip.expand_or_jump()
-            else
-              fallback()
-            end
-          end, { 'i', 's' }),
-          ['<S-Tab>'] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
-              luasnip.jump(-1)
-            else
-              fallback()
-            end
-          end, { 'i', 's' }),
-        }),
-        sources = cmp.config.sources({
-          { name = 'nvim_lsp' },
-          { name = 'luasnip' },
-        }, {
-          { name = 'buffer' },
-        })
-      })
-    end,
-  },
+  -- {
+  --   'hrsh7th/nvim-cmp',
+  --   dependencies = {
+  --     'hrsh7th/cmp-nvim-lsp',      -- LSP source for nvim-cmp
+  --     'hrsh7th/cmp-buffer',        -- Buffer completions
+  --     'hrsh7th/cmp-path',          -- Path completions
+  --     'hrsh7th/cmp-cmdline',       -- Command line completions
+  --     'L3MON4D3/LuaSnip',          -- Snippet engine
+  --     'saadparwaiz1/cmp_luasnip',  -- Snippet completions
+  --   },
+  --   config = function()
+  --     local cmp = require('cmp')
+  --     local luasnip = require('luasnip')
+  --
+  --     cmp.setup({
+  --       snippet = {
+  --         expand = function(args)
+  --           luasnip.lsp_expand(args.body)
+  --         end,
+  --       },
+  --       mapping = cmp.mapping.preset.insert({
+  --         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+  --         ['<C-f>'] = cmp.mapping.scroll_docs(4),
+  --         ['<C-Space>'] = cmp.mapping.complete(),
+  --         ['<CR>'] = cmp.mapping.confirm({ select = true }),
+  --         ['<Tab>'] = cmp.mapping(function(fallback)
+  --           if cmp.visible() then
+  --             cmp.select_next_item()
+  --           elseif luasnip.expand_or_jumpable() then
+  --             luasnip.expand_or_jump()
+  --           else
+  --             fallback()
+  --           end
+  --         end, { 'i', 's' }),
+  --         ['<S-Tab>'] = cmp.mapping(function(fallback)
+  --           if cmp.visible() then
+  --             cmp.select_prev_item()
+  --           elseif luasnip.jumpable(-1) then
+  --             luasnip.jump(-1)
+  --           else
+  --             fallback()
+  --           end
+  --         end, { 'i', 's' }),
+  --       }),
+  --       sources = cmp.config.sources({
+  --         { name = 'nvim_lsp' },
+  --         { name = 'luasnip' },
+  --       }, {
+  --         { name = 'buffer' },
+  --       })
+  --     })
+  --   end,
+  -- },
 
   -- eslint.nvim for linting (JavaScript and Vue)
   {

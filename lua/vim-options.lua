@@ -49,8 +49,19 @@ vim.keymap.set("n", "<leader>cp", "yap<S-}>p", { noremap = true })
 vim.keymap.set("n", "<leader>o", "o<esc>k", { noremap = true })
 vim.keymap.set("n", "<leader>O", "O<esc>j", { noremap = true })
 
-vim.keymap.set("n", "<leader>rf", ":w<cr>:VtrSendCommandToRunner dox-do bundle exec rspec -f documentation <c-r>=expand('%')<cr><cr>", { noremap = true })
-vim.keymap.set("n", "<leader>rl", ":w<cr>:VtrSendCommandToRunner dox-do bundle exec rspec -f documentation <c-r>=expand('%')<cr>:<c-r>=line('.')<cr><cr>", { noremap = true })
+vim.keymap.set('n', '<leader>rf', function()
+  local relative_path = vim.fn.fnamemodify(vim.fn.expand('%'), ':.')
+  vim.cmd('VtrSendCommand dox-do bundle exec rspec ' .. relative_path)
+end, { silent = true, desc = 'Run RSpec on current file with relative path' })
+
+vim.keymap.set('n', '<leader>rl', function()
+  local relative_path = vim.fn.fnamemodify(vim.fn.expand('%'), ':.')  -- Relative file path
+  local line_number = vim.fn.line('.')                                 -- Current line number
+  local command = string.format('VtrSendCommand dox-do bundle exec rspec %s:%d', relative_path, line_number)
+  vim.cmd(command)
+end, { silent = true, desc = 'Run RSpec on current file and line' })
+-- vim.keymap.set("n", "<leader>rf", ":w<cr>:VtrSendCommandToRunner dox-do bundle exec rspec -f documentation <c-r>=expand('%')<cr><cr>", { noremap = true })
+-- vim.keymap.set("n", "<leader>rl", ":w<cr>:VtrSendCommandToRunner dox-do bundle exec rspec -f documentation <c-r>=expand('%')<cr>:<c-r>=line('.')<cr><cr>", { noremap = true })
 vim.keymap.set("n", "<leader>rt", ":w<cr>:VtrSendCommandToRunner dox-do bundle exec rake test TEST=<c-r>=expand('%')<cr><cr>", { noremap = true })
 
 vim.keymap.set("n", "<leader>rc", ":w<cr>:VtrSendCommandToRunner dox-do rubocop --config .rubocop.ci.yml --display-cop-names --extra-details --display-style-guide --force-exclusion $(git diff --name-only --diff-filter=AM origin/master..HEAD -- '*.rb' '*.rake' '*.jbuilder')<cr><cr>", { noremap = true })

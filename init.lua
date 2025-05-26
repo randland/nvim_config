@@ -1,3 +1,9 @@
+if vim.fn.exists("g:vscode") == 1 then
+  vim.g.vscode = true
+else
+  vim.g.vscode = false
+end
+
 -- Initialize Lazy.vim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
